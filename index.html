@@ -8,10 +8,7 @@
 <body>
 
   <div id="app">
-    {{ nama.split('').reverse().join('') }}
-    <br>
-    {{ nama }} - {{  umur }} - {{{ raw }}}
-
+    {{ biodata }}
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
@@ -21,9 +18,20 @@
       data: {
         nama: "willywin",
         umur: 21,
-        raw: '<p> <b> mantap jaya! </b> </p>',
-        laki: true
+        biodata: ''
       },
+      computed: {
+        biodata: {
+          get: function() {
+            return this.nama + " umurnya " + this.umur
+          },
+          set: function(params){
+            var credential = params.split(' ')
+            this.nama = credential[0]
+            this.umur = credential[1]
+          }
+        }
+      }
     });
   </script>
 </body>
