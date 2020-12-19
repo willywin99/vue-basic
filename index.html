@@ -8,7 +8,9 @@
 <body>
 
   <div id="app">
-    {{ biodata }}
+    <div v-show="this.umur < 10">
+      {{ biodata }}
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
@@ -17,8 +19,9 @@
       el: '#app',
       data: {
         nama: "willywin",
-        umur: 21,
-        biodata: ''
+        umur: 9,
+        biodata: '',
+        done: false,
       },
       computed: {
         biodata: {
