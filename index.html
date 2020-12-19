@@ -8,9 +8,11 @@
 <body>
 
   <div id="app">
-    <div v-show="this.umur < 10">
-      {{ biodata }}
-    </div>
+    <ul>
+      <li v-for="(keys, member) in members">
+        {{ member }}  - {{ keys }}
+      </li>
+    </ul>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
@@ -18,23 +20,13 @@
     var vo = new Vue({
       el: '#app',
       data: {
-        nama: "willywin",
-        umur: 9,
-        biodata: '',
-        done: false,
-      },
-      computed: {
-        biodata: {
-          get: function() {
-            return this.nama + " umurnya " + this.umur
+        members: {
+           nama: "willywin", 
+           umur: 21,
+           language: "angular"
           },
-          set: function(params){
-            var credential = params.split(' ')
-            this.nama = credential[0]
-            this.umur = credential[1]
-          }
-        }
-      }
+      },
+      
     });
   </script>
 </body>
