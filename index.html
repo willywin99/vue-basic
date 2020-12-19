@@ -8,16 +8,21 @@
 <body>
 
   <div id="app">
-    {{ nama }} - {{  umur }}
+    {{ nama.split('').reverse().join('') }}
+    <br>
+    {{ nama }} - {{  umur }} - {{{ raw }}}
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
   <script>
-    new Vue({
+    var vo = new Vue({
       el: '#app',
       data: {
         nama: "willywin",
         umur: 21,
+        raw: '<p> <b> mantap jaya! </b> </p>',
+        laki: true
       },
     });
   </script>
