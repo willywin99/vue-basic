@@ -8,30 +8,35 @@
 <body>
 
   <div id="app">
-    <input type="text" v-model="texty">
-    <p> {{ texty }} </p>
-
-    <br>
-
-    <input type="checkbox" v-model="genre" value="cowo"> Laki2
-    <input type="checkbox" v-model="genre" value="cewe"> Perempuan
-    <p> {{ genre }} </p>
-
-    <br>
-
-    <input type="radio" v-model="lesson" value="html"> html
-    <input type="radio" v-model="lesson" value="css"> css
-    <p> {{ lesson }} </p>
+    <template-baru :nama="nama" :umur="umur" message="pesan berdarah"></template-baru>
   </div>
+
+  <!-- template -->
+  <template id="post-template">
+    <div>
+      <ul>
+        <li> {{ nama }} </li>
+        <li> {{ umur }} </li>
+        <li> {{ message }} </li>
+      </ul>
+    </div>
+  </template>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
   <script>
+
+    // define dan register
+    Vue.component('template-baru', {
+      template: '#post-template',
+      props: ['nama', 'umur', 'message']
+    });
+
     var vo = new Vue({
       el: '#app',
       data: {
-        genre : [],
-        lesson : []
-      },
+        nama: "willy",
+        umur: 99,
+      }
     });
   </script>
 </body>
