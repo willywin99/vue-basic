@@ -9,10 +9,11 @@
 
   <div id="app">
     <input type="text" v-on:keyup.13="cekidot">
-    <button v-on:click="boom('pesan berdarah')"> Klik saya </button>
+    <button @click="boom('pesan berdarah')"> Klik saya </button>
 
-    <a href="" v-on:click.stop.prevent="cekidot"> link </a>
+    <a v-bind:href.literal='https://google.com' href="" v-on:click="cekidot"> link </a>
 
+    <img v-bind="{ id: 'gambar', src:'gambar'}">
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
@@ -20,7 +21,7 @@
     var vo = new Vue({
       el: '#app',
       data: {
-        
+        // url_google : 'https://google.com'
       },
       methods: {
         boom : function(text) {
