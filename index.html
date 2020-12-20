@@ -8,14 +8,15 @@
 <body>
 
   <div id="app">
-    <template-baru :nama="nama" :umur="umur" message="pesan berdarah"></template-baru>
+    <input type="text" v-model="nama">
+    <template-baru v-bind:name="nama" :umur="umur" message="pesan berdarah"></template-baru>
   </div>
 
   <!-- template -->
   <template id="post-template">
     <div>
       <ul>
-        <li> {{ nama }} </li>
+        <li> {{ name }} </li>
         <li> {{ umur }} </li>
         <li> {{ message }} </li>
       </ul>
@@ -28,7 +29,7 @@
     // define dan register
     Vue.component('template-baru', {
       template: '#post-template',
-      props: ['nama', 'umur', 'message']
+      props: ['name', 'umur', 'message']
     });
 
     var vo = new Vue({
