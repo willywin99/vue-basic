@@ -8,12 +8,20 @@
 <body>
 
   <div id="app">
-    <input type="text" v-on:keyup.13="cekidot">
-    <button @click="boom('pesan berdarah')"> Klik saya </button>
+    <input type="text" v-model="texty">
+    <p> {{ texty }} </p>
 
-    <a v-bind:href.literal='https://google.com' href="" v-on:click="cekidot"> link </a>
+    <br>
 
-    <img v-bind="{ id: 'gambar', src:'gambar'}">
+    <input type="checkbox" v-model="genre" value="cowo"> Laki2
+    <input type="checkbox" v-model="genre" value="cewe"> Perempuan
+    <p> {{ genre }} </p>
+
+    <br>
+
+    <input type="radio" v-model="lesson" value="html"> html
+    <input type="radio" v-model="lesson" value="css"> css
+    <p> {{ lesson }} </p>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
@@ -21,17 +29,9 @@
     var vo = new Vue({
       el: '#app',
       data: {
-        // url_google : 'https://google.com'
+        genre : [],
+        lesson : []
       },
-      methods: {
-        boom : function(text) {
-          alert(' boom ! ' + text)
-        },
-        cekidot: function(e) {
-          // e.preventDefault()
-          console.log('cekidot terpanggil')
-        }
-      }
     });
   </script>
 </body>
