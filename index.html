@@ -9,8 +9,8 @@
 
   <div id="app">
     <ul>
-      <li v-for="(keys, member) in members">
-        {{ member }}  - {{ keys }}
+      <li v-for="member in members" track-by="$index">
+        {{ member.nama }} - {{ $index }}
       </li>
     </ul>
   </div>
@@ -20,11 +20,10 @@
     var vo = new Vue({
       el: '#app',
       data: {
-        members: {
-           nama: "willywin", 
-           umur: 21,
-           language: "angular"
-          },
+        members: [
+          { nama: "willywin", umur: 21 },
+          { nama: "sianturi", umur: 22 },
+        ]
       },
       
     });
