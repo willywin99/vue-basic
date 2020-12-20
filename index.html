@@ -8,17 +8,11 @@
 <body>
 
   <div id="app">
-    <ul>
-      <li v-for="member in members" track-by="$index">
-        {{ member.nama }} - {{ member.umur }}
-      </li>
+    <input type="text" v-on:keyup.13="cekidot">
+    <button v-on:click="boom('pesan berdarah')"> Klik saya </button>
 
-      <h2>Filter</h2>
+    <a href="" v-on:click.stop.prevent="cekidot"> link </a>
 
-      <li v-for="member in members | orderBy 'umur'" track-by="$index">
-        {{ member.nama | uppercase }} - {{ member.umur }}
-      </li>
-    </ul>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
@@ -26,13 +20,17 @@
     var vo = new Vue({
       el: '#app',
       data: {
-        members: [
-          { nama: "willywin", umur: 21 },
-          { nama: "sianturi", umur: 22 },
-          { nama: "tester", umur: 19 },
-        ]
+        
       },
-      
+      methods: {
+        boom : function(text) {
+          alert(' boom ! ' + text)
+        },
+        cekidot: function(e) {
+          // e.preventDefault()
+          console.log('cekidot terpanggil')
+        }
+      }
     });
   </script>
 </body>
