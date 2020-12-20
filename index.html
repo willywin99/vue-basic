@@ -10,7 +10,13 @@
   <div id="app">
     <ul>
       <li v-for="member in members" track-by="$index">
-        {{ member.nama }} - {{ $index }}
+        {{ member.nama }} - {{ member.umur }}
+      </li>
+
+      <h2>Filter</h2>
+
+      <li v-for="member in members | orderBy 'umur'" track-by="$index">
+        {{ member.nama | uppercase }} - {{ member.umur }}
       </li>
     </ul>
   </div>
@@ -23,6 +29,7 @@
         members: [
           { nama: "willywin", umur: 21 },
           { nama: "sianturi", umur: 22 },
+          { nama: "tester", umur: 19 },
         ]
       },
       
