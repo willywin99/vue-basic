@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <style>
     .fade-transition{
       transition: opacity .5s ease;
@@ -20,7 +21,7 @@
       <li><a href="#" @click="currentView='home'"> Home </a></li>
       <li><a href="#" @click="currentView='members'"> Member </a></li>
     </ul>
-    <component :is="currentView" transition="fade" transition-mode="out-in" keep-alive></component>
+    <component :is="currentView" class="animated" transition="custom-fade" transition-mode="out-in" keep-alive></component>
   </div>
 
   <template id="home-template">
@@ -30,7 +31,8 @@
 
   <template id="member-template">
     <ul>
-      <li v-for="member in members">
+      <input type="text" v-model="search" transition="stagger" stagger="100">
+      <li v-for="member in members | filterBy search">
         {{ member }}
       </li>
     </ul>
@@ -38,6 +40,11 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
   <script>
+
+    Vue.transition('custom-fade', {
+      enterClass: 'bounceInDown',
+      leaveClass: 'fadeOutUp'
+    })
 
     Vue.component('home', {
       template: '#home-template',
