@@ -4,39 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .fade-transition{
+      transition: opacity .5s ease;
+    }
+    .fade-enter, .fade-leave{
+      opacity: 0;
+    }
+  </style>
 </head>
 <body>
 
   <div id="app">
-    <input type="text" v-model="nama">
-    <template-baru v-bind:name="nama" :umur="umur" message="pesan berdarah"></template-baru>
+    <ul>
+      <li><a href="#" @click="currentView='home'"> Home </a></li>
+      <li><a href="#" @click="currentView='members'"> Member </a></li>
+    </ul>
+    <component :is="currentView" transition="fade" transition-mode="out-in" keep-alive></component>
   </div>
 
-  <!-- template -->
-  <template id="post-template">
-    <div>
-      <ul>
-        <li> {{ name }} </li>
-        <li> {{ umur }} </li>
-        <li> {{ message }} </li>
-      </ul>
-    </div>
+  <template id="home-template">
+    <h1>Selamat datang</h1>
+    <h2>di Sekolah Koding</h2>
+  </template>
+
+  <template id="member-template">
+    <ul>
+      <li v-for="member in members">
+        {{ member }}
+      </li>
+    </ul>
   </template>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
   <script>
 
-    // define dan register
-    Vue.component('template-baru', {
-      template: '#post-template',
-      props: ['name', 'umur', 'message']
+    Vue.component('home', {
+      template: '#home-template',
+    });
+
+    Vue.component('members', {
+      template: '#member-template',
+      data: function() {
+        return {
+          members: [
+            'asik', 'basik', 'casik', 'dasik'
+          ]
+        }
+      }
     });
 
     var vo = new Vue({
       el: '#app',
       data: {
-        nama: "willy",
-        umur: 99,
+        currentView : 'home'
       }
     });
   </script>
